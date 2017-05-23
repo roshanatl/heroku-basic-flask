@@ -65,9 +65,9 @@ def classify():
 
  # setup_app()
 
-    predictions = dict(run_inference_on_image(image.filename))
-    print(predictions)
-    jsonify(predictions)
+    result = dict(run_inference_on_image(image.filename))
+    print(result)
+    jsonify(result)
 
 
 # The following code performs the recognition, and is derived from the examples
