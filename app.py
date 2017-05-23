@@ -56,9 +56,9 @@ def welcome():
 @app.route("/classify", methods=["POST"])
 def classify():
   image= request.files['file']
-  bin_file = StringIO.StringIO(f.read()) 
+  image.save(secure_filename(f.filename))
  # setup_app()
-  predictions = dict(run_inference_on_image(bin_file))
+  predictions = dict(run_inference_on_image(f.filename))
   print(predictions)
   return jsonify(predictions=predictions)
  
@@ -160,10 +160,10 @@ def run_inference_on_image(image_data):
   Returns:
     Nothing
   """
-  #image_data_read = tf.gfile.FastGFile(image_data, 'rb').read() 
+  image_data_read = tf.gfile.FastGFile(image_data, 'rb').read() 
   # Runs the softmax tensor by feeding the image_data as input to the graph.
   softmax_tensor = sess.graph.get_tensor_by_name('final_result:0')
-  predictions = sess.run(softmax_tensor, {'DecodeJpeg/contents:0': image_data})
+  predictions = sess.run(softmax_tensor, {'DecodeJpeg/contents:0': image_data_read})
   #predictions = np.squeeze(predictions)
   # sort the predictions
   top_k = predictions.argsort()[-FLAGS.num_top_predictions:][::-1]
