@@ -153,7 +153,7 @@ def run_inference_on_image(image_data):
   return [(node_lookup.id_to_string(node_id), float(predictions[node_id])) for node_id in top_k]
  
 
-def set_up(app)
+def setup_app(app)
    create_graph()
    print("Model loaded")
 
