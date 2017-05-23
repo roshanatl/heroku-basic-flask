@@ -172,8 +172,8 @@ def run_inference_on_image(image_data):
         human_string = label_lines[node_id]
         score = predictions[0][node_id]
         print('%s (score = %.5f)' % (human_string, score))
-	data[human_string] = score
-
+	details= ("{\"%s\" : \"%.5f\"}" % (human_string, score))
+        data.append(details)
   # map to the friendly names and return the tuples
   return data
  
