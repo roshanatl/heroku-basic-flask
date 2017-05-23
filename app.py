@@ -65,7 +65,7 @@ def classify():
 
  # setup_app()
 
-    result = dict(run_inference_on_image(image.filename))
+    result = run_inference_on_image(image.filename)
     print(result)
     jsonify(result)
 
