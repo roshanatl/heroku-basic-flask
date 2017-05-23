@@ -59,8 +59,7 @@ def classify():
  # setup_app()
   predictions = dict(run_inference_on_image(image.filename))
   print(predictions)
-  json_data = json.dumps(predictions)
-  return json_data
+  jsonify(predictions=predictions) 
  
 # The following code performs the recognition, and is derived from the examples
 # provided in the Tensorflow package
@@ -174,6 +173,7 @@ def run_inference_on_image(image_data):
         score = predictions[0][node_id]
         print('%s (score = %.5f)' % (human_string, score))
 	data[human_string] = score
+
   # map to the friendly names and return the tuples
   return data
  
