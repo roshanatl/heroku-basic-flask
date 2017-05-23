@@ -33,7 +33,8 @@ def welcome():
 # Classificaiton endpoint
 @app.route("/classify", methods=["POST"])
 def classify():
-  predictions = dict(run_inference_on_image(request.data))
+  image= request.files['file']
+  predictions = dict(run_inference_on_image(image))
   print(predictions)
   return jsonify(predictions=predictions)
  
