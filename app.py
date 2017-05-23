@@ -165,7 +165,8 @@ def run_inference_on_image(image_data):
   predictions = sess.run(softmax_tensor, {'DecodeJpeg/contents:0': image_data_read})
   #predictions = np.squeeze(predictions)
   # sort the predictions
-  top_k = predictions.argsort()[-FLAGS.num_top_predictions:][::-1]
+  top_k = predictions[0].argsort()[-FLAGS.num_top_predictions:][::-1]
+  #top_k = predictions[0].argsort()[-len(predictions[0]):][::-1]
   for node_id in top_k:
         human_string = label_lines[node_id]
         score = predictions[0][node_id]
