@@ -59,7 +59,8 @@ def classify():
  # setup_app()
   predictions = dict(run_inference_on_image(image.filename))
   print(predictions)
-  return jsonify(predictions=predictions)
+  json_data = json.dumps(predictions)
+  return json_data
  
 # The following code performs the recognition, and is derived from the examples
 # provided in the Tensorflow package
@@ -167,12 +168,14 @@ def run_inference_on_image(image_data):
   # sort the predictions
   top_k = predictions[0].argsort()[-FLAGS.num_top_predictions:][::-1]
   #top_k = predictions[0].argsort()[-len(predictions[0]):][::-1]
+  data = {}
   for node_id in top_k:
         human_string = label_lines[node_id]
         score = predictions[0][node_id]
         print('%s (score = %.5f)' % (human_string, score))
+	data[human_string] = score
   # map to the friendly names and return the tuples
-  return [{'done'}]
+  return data
  
 
 def setup_app():
