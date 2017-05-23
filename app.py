@@ -10,7 +10,7 @@ import tarfile
 import numpy as np
 from six.moves import urllib
 import tensorflow as tf
-from datetime import datetime 
+ 
 from flask import Flask, request, Response, jsonify
 app = Flask(__name__)
  
@@ -26,17 +26,10 @@ tf.app.flags.DEFINE_string(
 tf.app.flags.DEFINE_integer('num_top_predictions', 5,
                             """Display this many predictions.""")
 
-@app.route('/')
-def homepage():
-    the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
-
-    return """
-    <h1>Hello heroku</h1>
-    <p>It is currently {time}.</p>
-
-    <img src="http://loremflickr.com/600/400" />
-    """.format(time=the_time)
-
+@app.route('/', methods=['GET', 'POST'])
+def welcome():
+	return "welcome to deepAlpr API landing page"
+ 
 # Classificaiton endpoint
 @app.route("/classify", methods=["POST"])
 def classify():
@@ -171,5 +164,4 @@ if __name__ == '__main__':
   print("Launching web application...")
   app.run(debug=True)
   
-
 
