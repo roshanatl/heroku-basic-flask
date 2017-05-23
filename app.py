@@ -15,8 +15,8 @@ from flask import Flask, request, Response, jsonify
 app = Flask(__name__)
 def setup_app(app):
    # All your initialization code
-   sess = None
-   node_lookup = None
+#   sess = None
+#   node_lookup = None
    setup_app(app)
  
 # import default command line flags from TensorFlow
@@ -130,8 +130,8 @@ def create_graph():
     graph_def.ParseFromString(f.read())
     _ = tf.import_graph_def(graph_def, name='')
  
-#sess = None
-#node_lookup = None
+sess = None
+node_lookup = None
  
 def run_inference_on_image(image_data):
   """Runs inference on an image.
