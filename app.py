@@ -12,12 +12,16 @@ from six.moves import urllib
 import tensorflow as tf
  
 from flask import Flask, request, Response, jsonify
+sess = None
+node_lookup = None
+setup_app()
+
 app = Flask(__name__)
 def setup_app(app):
    # All your initialization code
 #   sess = None
 #   node_lookup = None
-   setup_app()
+  # setup_app()
  
 # import default command line flags from TensorFlow
 FLAGS = tf.app.flags.FLAGS
@@ -39,7 +43,7 @@ def welcome():
 @app.route("/classify", methods=["POST"])
 def classify():
   image= request.files['file']
-  setup_app()
+ # setup_app()
   predictions = dict(run_inference_on_image(image))
   print(predictions)
   return jsonify(predictions=predictions)
@@ -131,8 +135,7 @@ def create_graph():
     graph_def.ParseFromString(f.read())
     _ = tf.import_graph_def(graph_def, name='')
  
-sess = None
-node_lookup = None
+
  
 def run_inference_on_image(image_data):
   """Runs inference on an image.
