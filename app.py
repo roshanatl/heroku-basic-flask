@@ -13,6 +13,9 @@ import tensorflow as tf
  
 from flask import Flask, request, Response, jsonify
 app = Flask(__name__)
+def setup_app(app):
+   # All your initialization code
+   setup_app(app)
  
 # import default command line flags from TensorFlow
 FLAGS = tf.app.flags.FLAGS
@@ -149,7 +152,21 @@ def run_inference_on_image(image_data):
   # map to the friendly names and return the tuples
   return [(node_lookup.id_to_string(node_id), float(predictions[node_id])) for node_id in top_k]
  
- 
+
+def set_up(app)
+   create_graph()
+   print("Model loaded")
+
+   node_lookup = NodeLookup()
+   print("Node lookup loaded")
+
+   sess = tf.Session()
+   print("Tensorflow session ready")
+
+   print("Launching web application...")
+   app.run(debug=True)
+
+
  
 if __name__ == '__main__':
  
