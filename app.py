@@ -17,12 +17,7 @@ node_lookup = None
 setup_app()
 
 app = Flask(__name__)
-def setup_app(app):
-   # All your initialization code
-#   sess = None
-#   node_lookup = None
-  # setup_app()
- 
+
 # import default command line flags from TensorFlow
 FLAGS = tf.app.flags.FLAGS
  
@@ -170,22 +165,13 @@ def setup_app():
    print("Tensorflow session ready")
 
    print("Launching web application...")
-   app.run(debug=True)
+  # app.run(debug=True)
 
 
  
 if __name__ == '__main__':
- 
-  create_graph()
-  print("Model loaded")
- 
-  node_lookup = NodeLookup()
-  print("Node lookup loaded")
- 
-  sess = tf.Session()
-  print("Tensorflow session ready")
- 
-  print("Launching web application...")
+
+print("Launching web application...")
   app.run(debug=True)
   
 
