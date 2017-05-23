@@ -21,18 +21,18 @@ sess = None
 node_lookup = None
 
  # Creates graph from saved graph_def.pb.
- with tf.gfile.FastGFile("retrained_graph.pb", 'rb') as f:
+with tf.gfile.FastGFile("retrained_graph.pb", 'rb') as f:
     graph_def = tf.GraphDef()
     graph_def.ParseFromString(f.read())
     tf.import_graph_def(graph_def, name='')
 
- print("Model loaded")
+print("Model loaded")
 
- node_lookup = NodeLookup()
- print("Node lookup loaded")
+node_lookup = NodeLookup()
+print("Node lookup loaded")
 	
- sess = tf.Session()
- print("Tensorflow session ready")
+sess = tf.Session()
+print("Tensorflow session ready")
 
 
 # import default command line flags from TensorFlow
