@@ -21,11 +21,10 @@ sess = None
 node_lookup = None
 
  # Creates graph from saved graph_def.pb.
- with tf.gfile.FastGFile(os.path.join(
-    FLAGS.model_dir, 'retrained_graph.pb'), 'rb') as f:
+ with tf.gfile.FastGFile("retrained_graph.pb", 'rb') as f:
     graph_def = tf.GraphDef()
     graph_def.ParseFromString(f.read())
-    _ = tf.import_graph_def(graph_def, name='')
+    tf.import_graph_def(graph_def, name='')
 
  print("Model loaded")
 
