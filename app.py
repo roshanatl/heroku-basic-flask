@@ -170,8 +170,7 @@ def setup_app():
 
  
 if __name__ == '__main__':
-
-print("Launching web application...")
+  print("Launching web application...")
   app.run(debug=True)
   
 
