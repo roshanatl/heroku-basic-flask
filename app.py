@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -66,7 +67,7 @@ def classify():
 
     predictions = dict(run_inference_on_image(image.filename))
     print(predictions)
-    jsonify(predictions=predictions)
+    jsonify(predictions)
 
 
 # The following code performs the recognition, and is derived from the examples
@@ -167,17 +168,17 @@ def run_inference_on_image(image_data):
 
   # top_k = predictions[0].argsort()[-len(predictions[0]):][::-1]
 
-    data = {}
+    detections = []
     for node_id in top_k:
         human_string = label_lines[node_id]
         score = predictions[0][node_id]
         print('%s (score = %.5f)' % (human_string, score))
-        details = '{"%s" : "%.5f"}' % (human_string, score)
-        data.append(details)
+        tmpdetect = {human_string: score}
+        detections.append(details)
 
   # map to the friendly names and return the tuples
 
-    return data
+    return detections
 
 
 def setup_app():
