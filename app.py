@@ -28,8 +28,9 @@ with tf.gfile.FastGFile("retrained_graph.pb", 'rb') as f:
 
 print("Model loaded")
 
-node_lookup = NodeLookup()
-print("Node lookup loaded")
+label_lines = [line.rstrip() for line 
+                   in tf.gfile.GFile("retrained_labels.txt")]
+print("labels loaded")
 	
 sess = tf.Session()
 print("Tensorflow session ready")
@@ -162,13 +163,15 @@ def run_inference_on_image(image_data):
   # Runs the softmax tensor by feeding the image_data as input to the graph.
   softmax_tensor = sess.graph.get_tensor_by_name('final_result:0')
   predictions = sess.run(softmax_tensor, {'DecodeJpeg/contents:0': image_data})
-  predictions = np.squeeze(predictions)
- 
+  #predictions = np.squeeze(predictions)
   # sort the predictions
   top_k = predictions.argsort()[-FLAGS.num_top_predictions:][::-1]
- 
+  for node_id in top_k:
+        human_string = label_lines[node_id]
+        score = predictions[0][node_id]
+        print('%s (score = %.5f)' % (human_string, score))
   # map to the friendly names and return the tuples
-  return [(node_lookup.id_to_string(node_id), float(predictions[node_id])) for node_id in top_k]
+  return [{done}]
  
 
 def setup_app():
