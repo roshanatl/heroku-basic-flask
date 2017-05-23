@@ -17,7 +17,7 @@ def setup_app(app):
    # All your initialization code
 #   sess = None
 #   node_lookup = None
-   setup_app(app)
+   setup_app()
  
 # import default command line flags from TensorFlow
 FLAGS = tf.app.flags.FLAGS
@@ -38,7 +38,8 @@ def welcome():
 # Classificaiton endpoint
 @app.route("/classify", methods=["POST"])
 def classify():
-  image= request.files['file']
+  image= requ0est.files['file']
+  setup_app()
   predictions = dict(run_inference_on_image(image))
   print(predictions)
   return jsonify(predictions=predictions)
@@ -155,7 +156,7 @@ def run_inference_on_image(image_data):
   return [(node_lookup.id_to_string(node_id), float(predictions[node_id])) for node_id in top_k]
  
 
-def setup_app(app):
+def setup_app():
    create_graph()
    print("Model loaded")
 
