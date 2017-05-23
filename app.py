@@ -174,7 +174,7 @@ def run_inference_on_image(image_data):
         score = predictions[0][node_id]
         print('%s (score = %.5f)' % (human_string, score))
         tmpdetect = {human_string: score}
-        detections.append(details)
+        detections.append(tmpdetect)
 
   # map to the friendly names and return the tuples
 
