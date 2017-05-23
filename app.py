@@ -67,7 +67,7 @@ def classify():
 
     result = run_inference_on_image(image.filename)
     print(result)
-    jsonify(result)
+    return jsonify(result)
 
 
 # The following code performs the recognition, and is derived from the examples
