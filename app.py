@@ -182,24 +182,8 @@ def run_inference_on_image(image_data):
         detections.append(tmpdetect)
 
   # map to the friendly names and return the tuples
-
+    del predictions
     return detections
-
-
-def setup_app():
-    create_graph()
-    print('Model loaded')
-
-    node_lookup = NodeLookup()
-    print('Node lookup loaded')
-
-    sess = tf.Session()
-    print('Tensorflow session ready')
-
-    print('Launching web application...')
-
-
-  # app.run(debug=True)
 
 if __name__ == '__main__':
     print('Launching web application...')
