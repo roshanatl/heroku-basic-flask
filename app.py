@@ -35,8 +35,8 @@ label_lines = [line.rstrip() for line in
                tf.gfile.GFile('retrained_labels.txt')]
 print('labels loaded')
 
-sess = tf.Session()
-print('Tensorflow session ready')
+
+
 
 # import default command line flags from TensorFlow
 
@@ -154,7 +154,8 @@ def run_inference_on_image(image_data):
   """
 
     image_data_read = tf.gfile.FastGFile(image_data, 'rb').read()
-
+    sess = tf.Session()
+    print('Tensorflow session ready')
   # Runs the softmax tensor by feeding the image_data as input to the graph.
 
     softmax_tensor = sess.graph.get_tensor_by_name('final_result:0')
@@ -163,7 +164,8 @@ def run_inference_on_image(image_data):
 
   # predictions = np.squeeze(predictions)
   # sort the predictions
-
+    sess.close()
+   print('Tensorflow session closed')
     top_k = predictions[0].argsort()[-FLAGS.num_top_predictions:][::-1]
 
   # top_k = predictions[0].argsort()[-len(predictions[0]):][::-1]
