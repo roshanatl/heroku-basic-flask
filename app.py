@@ -9,6 +9,7 @@ import os.path
 import re
 import sys
 import tarfile
+import gc
 
 import numpy as np
 from six.moves import urllib
@@ -67,6 +68,7 @@ def classify():
 
     result = run_inference_on_image(image.filename)
     print(result)
+    gc.collect()
     return jsonify(result)
 
 
