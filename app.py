@@ -165,6 +165,7 @@ def run_inference_on_image(image_data):
   # predictions = np.squeeze(predictions)
   # sort the predictions
     sess.close()
+    del sess
     print('Tensorflow session closed')
     
     top_k = predictions[0].argsort()[-FLAGS.num_top_predictions:][::-1]
